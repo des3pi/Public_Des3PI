@@ -2,17 +2,22 @@
 
 import os
 import math
+from operator import itemgetter
 
 
 start_path = os.getcwd()
 os.chdir(start_path)
 
-# Essai
+
 ####### IDENTIFY THE IDENTICAL HOT SPOTS GROUPS
 peptide_centroid = []
 maximum_groups = 0
 
 dico_clusters = {}
+
+def compute_distance_cluster(x1,y1,z1,x2,y2,z2):
+    distance = math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)+(z1-z2)*(z1-z2))
+    return distance
 
 for i in range(1,21):
     list_centres = []
@@ -266,7 +271,7 @@ print(dict_sequences)
 
 for group in dico_unic_runs.keys():
     os.chdir(start_path)
-    os.system("mkdir conformation{}".format(group))
+    os.system("mkdir class{}".format(group))
     run = dico_unic_runs[group][0][0]
     if run <=9:
         run_to_write = "0" + str(run)
@@ -274,7 +279,7 @@ for group in dico_unic_runs.keys():
         run_to_write = str(run)
     clusters_to_write = dico_unic_runs[group][0][1]
     for i,cluster in enumerate(clusters_to_write):
-        os.system("cp {}/{}/docking_results/cluster{}.xyz {}/conformation{}/cluster{}.xyz".format(start_path,run_to_write,int(cluster),start_path,group,i+1))
+        os.system("cp {}/{}/docking_results/cluster{}.xyz {}/class{}/cluster{}.xyz".format(start_path,run_to_write,int(cluster),start_path,group,i+1))
 
 ## End writing cluster position
 
@@ -284,11 +289,115 @@ aa_library = {"ala":"A","asn":"N","gln":"Q","ile":"I","lys":"K","phe":"F","thr":
 
 
 length_peptide = []
-for groups in dict_sequences.keys():
-    with open("{}/conformation{}/peptides.txt".format(start_path,groups),"w") as peptides:
-        for i in range(0,len(dict_sequences[groups][0])):
-            for cluster in dict_sequences[groups]:
-                peptides.write(aa_library[dict_sequences[groups][cluster][i]])
-            peptides.write("\n")
+with open("{}/des3pi_all_sequences.txt".format(start_path),"w") as final_result:
+    for groups in dict_sequences.keys():
+        final_result.write("class {}:\n".format(groups))
+        with open("{}/class{}/peptides.txt".format(start_path,groups),"w") as peptides:
+            for i in range(0,len(dict_sequences[groups][0])):
+                for cluster in dict_sequences[groups]:
+                    peptides.write(aa_library[dict_sequences[groups][cluster][i]])
+                peptides.write("\n")
+        with open("{}/class{}/best_5_peptides.txt".format(start_path,groups),"w") as best_peptides:
+            with open("{}/class{}/peptides.txt".format(start_path,groups),"r") as peptides:
+                lines = peptides.readlines()
+
+                clean_lines = []
+                for i in lines:
+                    clean = i.split("\n")[0]
+                    clean_str = ""
+                    for j in clean:
+                        if j.isupper() == True:
+                            clean_str = clean_str + j
+                    clean_lines.append(clean_str)
+
+                counts = {}
+                global_counts ={}
+                for i in range(1,len(clean_lines[0])+1):
+                    counts[i] = []
+                    global_counts[i] = ""
+
+                for i in clean_lines:
+                    for position,j in enumerate(i):
+                        counts[position+1].append(j)
+
+                import itertools
+                list_counts = []
+                for i in counts.keys():
+                    count_aa = []
+                    test = list(set(counts[i]))
+                    for j in test:
+                        aa_count = j,counts[i].count(j)
+                        count_aa.append(aa_count)
+                        if j not in global_counts[i]:
+                            global_counts[i] = global_counts[i] + j
+                    list_counts.append(count_aa)
+
+                nb_hotspots = len(lines[0].split("\n")[0])
+                print(nb_hotspots)
+                if str(nb_hotspots) == "4":
+                    list_combinations = list(itertools.product(global_counts[1],global_counts[2],global_counts[3],global_counts[4])) 
+                if str(nb_hotspots) == "5":
+                    list_combinations = list(itertools.product(global_counts[1],global_counts[2],global_counts[3],global_counts[4],global_counts[5]))
+                if str(nb_hotspots) == "6":
+                    list_combinations = list(itertools.product(global_counts[1],global_counts[2],global_counts[3],global_counts[4],global_counts[5],global_counts[6]))
+                if str(nb_hotspots) == "7":
+                    list_combinations = list(itertools.product(global_counts[1],global_counts[2],global_counts[3],global_counts[4],global_counts[5],global_counts[6],global_counts[7]))
+                if str(nb_hotspots) == "8":
+                    list_combinations = list(itertools.product(global_counts[1],global_counts[2],global_counts[3],global_counts[4],global_counts[5],global_counts[6],global_counts[7],global_counts[8]))
+                if str(nb_hotspots) == "9":
+                    list_combinations = list(itertools.product(global_counts[1],global_counts[2],global_counts[3],global_counts[4],global_counts[5],global_counts[6],global_counts[7],global_counts[8],global_counts[9]))
+                if str(nb_hotspots) == "10":
+                    list_combinations = list(itertools.product(global_counts[1],global_counts[2],global_counts[3],global_counts[4],global_counts[5],global_counts[6],global_counts[7],global_counts[8],global_counts[9],global_counts[10]))
+
+                list_list_combinations = []
+                for i in list_combinations:
+                    list_list_combinations.append(list(i))
+
+
+                list_seq_ordered = []
+                for i in list_list_combinations:
+                    count_seq = 0
+                    for j,k in enumerate(i):
+                        for element in list_counts[j]:
+                            if element[0] == k:
+                                count_seq = count_seq + element[1]
+                                break
+                    list_seq_ordered.append(("".join(i),count_seq))
+
+                list_sorted = sorted(list_seq_ordered, key=itemgetter(1), reverse = True)
+                best_5_peptides = list_sorted[0:5]
+                print(best_5_peptides)
+                for best_pep in best_5_peptides:
+                    str_pep = ""
+                    for i in range(0,nb_hotspots):
+                        str_pep = str_pep + str(best_pep[0][i])
+                        if i == nb_hotspots -1:
+                            continue
+                        else:
+                            clst_neighbour = i+2
+                            clst1 = open("{}/class{}/cluster{}.xyz".format(start_path,groups,str(i+1),"r"))
+                            clst2 = open("{}/class{}/cluster{}.xyz".format(start_path,groups,str(clst_neighbour),"r"))
+                            lines1 = clst1.readlines()
+                            lines2 = clst2.readlines()
+                            x1,y1,z1 = float(lines1[2].split()[1]),float(lines1[2].split()[2]),float(lines1[2].split()[3])
+                            x2,y2,z2 = float(lines2[2].split()[1]),float(lines2[2].split()[2]),float(lines2[2].split()[3])
+                            distance = compute_distance_cluster(x1,y1,z1,x2,y2,z2)
+                            if distance >=4.3:
+                                str_pep = str_pep + math.ceil(distance/4.3 -1)*'g'
+                    first_clst = 1
+                    clst1 = open("{}/class{}/cluster{}.xyz".format(start_path,groups,str(nb_hotspots),"r"))
+                    clst2 = open("{}/class{}/cluster{}.xyz".format(start_path,groups,str(first_clst),"r"))
+                    lines1 = clst1.readlines()
+                    lines2 = clst2.readlines()
+                    x1,y1,z1 = float(lines1[2].split()[1]),float(lines1[2].split()[2]),float(lines1[2].split()[3])
+                    x2,y2,z2 = float(lines2[2].split()[1]),float(lines2[2].split()[2]),float(lines2[2].split()[3])
+                    distance = compute_distance_cluster(x1,y1,z1,x2,y2,z2)
+                    if distance >=4.3:
+                        str_pep = str_pep + math.ceil(distance/4.3 -1)*'g' 
+                    best_peptides.write(str_pep + "\n")
+                    final_result.write(str_pep + "\n")
     
 
+                        
+    
+    
