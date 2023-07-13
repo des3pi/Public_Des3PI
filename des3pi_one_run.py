@@ -10,7 +10,7 @@ import run_simulation
 import compute_ca
 import clustering
 import find_best_sequences
-import build_peptide
+
 
 # Arguments
 parser = argparse.ArgumentParser()
