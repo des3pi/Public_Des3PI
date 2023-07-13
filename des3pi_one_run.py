@@ -43,7 +43,7 @@ zsbox = args.zs
 xcbox = args.xc
 ycbox = args.yc
 zcbox = args.zc
-analysis_only_bool = args.analysis_only
+analysis_only_bool = str(args.analysis_only)
 print("The selected target is "+target)
 
 start_dir = os.getcwd()
