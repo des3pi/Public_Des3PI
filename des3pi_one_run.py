@@ -54,11 +54,11 @@ if xsbox == 0 and ysbox == 0 and zsbox == 0 and xcbox ==0 and ycbox ==0 and zcbo
 
 ### Run the simulation
 os.chdir(start_dir)
-#run_simulation.run_docking(start_dir,target,nb_dock,xcbox,ycbox,zcbox,xsbox,ysbox,zsbox)
+run_simulation.run_docking(start_dir,target,nb_dock,xcbox,ycbox,zcbox,xsbox,ysbox,zsbox)
 
 ### Convert pdbqt to pdb for the next analysis
 os.chdir(start_dir)
-#run_simulation.pdbqt_to_pdb(start_dir,nb_dock)
+run_simulation.pdbqt_to_pdb(start_dir,nb_dock)
 
 ### Compute CAs 
 
