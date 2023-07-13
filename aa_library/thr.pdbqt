@@ -1,0 +1,28 @@
+REMARK  Name = thr.pdb
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  CA  THR A  1        0.092   0.099   0.023  0.00  0.00    +0.189 C 
+ENDROOT
+BRANCH   1   2
+ATOM      2  N   THR A  1       -0.827  -1.003   0.443  0.00  0.00    -0.316 NA
+ATOM      3  H1  THR A  1       -0.332  -1.664   1.041  0.00  0.00    +0.119 HD
+ATOM      4  H2  THR A  1       -1.598  -0.602   0.979  0.00  0.00    +0.119 HD
+ENDBRANCH   1   2
+BRANCH   1   6
+ATOM      5  CG2 THR A  1        1.369   2.177   0.831  0.00  0.00    +0.040 C 
+ATOM      6  CB  THR A  1        0.629   0.889   1.253  0.00  0.00    +0.139 C 
+BRANCH   6   7
+ATOM      7  OG1 THR A  1       -0.448   1.266   2.113  0.00  0.00    -0.390 OA
+ATOM      8  HG1 THR A  1       -0.579   0.558   2.770  0.00  0.00    +0.210 HD
+ENDBRANCH   6   7
+ENDBRANCH   1   6
+BRANCH   1   9
+ATOM      9  C   THR A  1        1.244  -0.334  -0.921  0.00  0.00    +0.324 C 
+ATOM     10  O   THR A  1        1.584   0.261  -1.925  0.00  0.00    -0.249 OA
+BRANCH   9  11
+ATOM     11  OXT THR A  1        2.090  -1.252  -0.437  0.00  0.00    -0.479 OA
+ATOM     12  HXT THR A  1        2.729  -1.241  -1.169  0.00  0.00    +0.295 HD
+ENDBRANCH   9  11
+ENDBRANCH   1   9
+TORSDOF 5

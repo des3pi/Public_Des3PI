@@ -1,0 +1,20 @@
+REMARK  Name = gly.pdb
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  CA  GLY A  1        0.639   1.245   0.316  0.00  0.00    +0.199 C 
+ENDROOT
+BRANCH   1   2
+ATOM      2  N   GLY A  1        1.543   0.065   0.201  0.00  0.00    -0.321 NA
+ATOM      3  H1  GLY A  1        1.048  -0.698  -0.268  0.00  0.00    +0.119 HD
+ATOM      4  H2  GLY A  1        2.361   0.283  -0.368  0.00  0.00    +0.119 HD
+ENDBRANCH   1   2
+BRANCH   1   5
+ATOM      5  C   GLY A  1       -0.751   0.945   0.914  0.00  0.00    +0.319 C 
+ATOM      6  O   GLY A  1       -1.617   0.289   0.372  0.00  0.00    -0.250 OA
+BRANCH   5   7
+ATOM      7  OXT GLY A  1       -0.971   1.383   2.153  0.00  0.00    -0.480 OA
+ATOM      8  HXT GLY A  1       -1.848   0.985   2.278  0.00  0.00    +0.295 HD
+ENDBRANCH   5   7
+ENDBRANCH   1   5
+TORSDOF 3

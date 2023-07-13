@@ -1,0 +1,31 @@
+REMARK  Name = glu.pdb
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  CA  GLU A  1       -0.091   0.158   0.099  0.00  0.00    +0.161 C 
+ENDROOT
+BRANCH   1   2
+ATOM      2  N   GLU A  1       -0.511   1.555  -0.186  0.00  0.00    -0.318 NA
+ATOM      3  H1  GLU A  1       -1.533   1.566  -0.182  0.00  0.00    +0.119 HD
+ATOM      4  H2  GLU A  1       -0.246   1.754  -1.155  0.00  0.00    +0.119 HD
+ENDBRANCH   1   2
+BRANCH   1   5
+ATOM      5  C   GLU A  1       -0.559  -0.393   1.474  0.00  0.00    +0.322 C 
+ATOM      6  OXT GLU A  1        0.152  -0.808   2.367  0.00  0.00    -0.249 OA
+BRANCH   5   7
+ATOM      7  O   GLU A  1       -1.872  -0.352   1.717  0.00  0.00    -0.480 OA
+ATOM      8  H   GLU A  1       -1.835  -0.733   2.605  0.00  0.00    +0.295 HD
+ENDBRANCH   5   7
+ENDBRANCH   1   5
+BRANCH   1   9
+ATOM      9  CB  GLU A  1       -0.571  -0.751  -1.056  0.00  0.00    +0.041 C 
+BRANCH   9  10
+ATOM     10  CG  GLU A  1        0.012  -0.347  -2.435  0.00  0.00    +0.127 C 
+BRANCH  10  11
+ATOM     11  CD  GLU A  1       -0.481  -1.264  -3.553  0.00  0.00    +0.356 C 
+ATOM     12  OE2 GLU A  1        0.207  -2.228  -3.833  0.00  0.00    -0.246 OA
+ATOM     13  OE1 GLU A  1       -1.572  -1.015  -4.034  0.00  0.00    -0.246 OA
+ENDBRANCH  10  11
+ENDBRANCH   9  10
+ENDBRANCH   1   9
+TORSDOF 6

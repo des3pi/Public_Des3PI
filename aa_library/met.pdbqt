@@ -1,0 +1,30 @@
+REMARK  Name = met.pdb
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  CA  MET A  1       -2.567   3.210   0.121  0.00  0.00    +0.161 C 
+ENDROOT
+BRANCH   1   2
+ATOM      2  N   MET A  1       -1.913   3.948   1.235  0.00  0.00    -0.318 NA
+ATOM      3  H1  MET A  1       -2.291   3.607   2.124  0.00  0.00    +0.119 HD
+ATOM      4  H2  MET A  1       -0.912   3.752   1.241  0.00  0.00    +0.119 HD
+ENDBRANCH   1   2
+BRANCH   1   5
+ATOM      5  C   MET A  1       -4.118   3.285   0.121  0.00  0.00    +0.322 C 
+ATOM      6  O   MET A  1       -4.815   3.405  -0.864  0.00  0.00    -0.249 OA
+BRANCH   5   7
+ATOM      7  OXT MET A  1       -4.715   2.867   1.244  0.00  0.00    -0.480 OA
+ATOM      8  HXT MET A  1       -5.630   2.885   0.922  0.00  0.00    +0.295 HD
+ENDBRANCH   5   7
+ENDBRANCH   1   5
+BRANCH   1   9
+ATOM      9  CB  MET A  1       -2.084   1.740   0.113  0.00  0.00    +0.040 C 
+BRANCH   9  10
+ATOM     10  CG  MET A  1       -0.553   1.609  -0.029  0.00  0.00    +0.071 C 
+BRANCH  10  11
+ATOM     11  SD  MET A  1       -0.064  -0.164  -0.072  0.00  0.00    -0.164 S 
+ATOM     12  CE  MET A  1        1.769   0.015  -0.060  0.00  0.00    +0.084 C 
+ENDBRANCH  10  11
+ENDBRANCH   9  10
+ENDBRANCH   1   9
+TORSDOF 6

@@ -1,0 +1,27 @@
+REMARK  Name = cys.pdb
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  CA  CYS A  1       -0.870   0.795  -0.895  0.00  0.00    +0.170 C 
+ENDROOT
+BRANCH   1   2
+ATOM      2  N   CYS A  1       -0.601  -0.231  -1.935  0.00  0.00    -0.318 NA
+ATOM      3  H1  CYS A  1        0.120  -0.858  -1.564  0.00  0.00    +0.119 HD
+ATOM      4  H2  CYS A  1       -0.189   0.225  -2.751  0.00  0.00    +0.119 HD
+ENDBRANCH   1   2
+BRANCH   1   5
+ATOM      5  C   CYS A  1       -1.835   1.936  -1.309  0.00  0.00    +0.323 C 
+ATOM      6  OXT CYS A  1       -2.705   2.403  -0.601  0.00  0.00    -0.249 OA
+BRANCH   5   7
+ATOM      7  O   CYS A  1       -1.424   2.690  -2.336  0.00  0.00    -0.480 OA
+ATOM      8  H   CYS A  1       -2.097   3.386  -2.263  0.00  0.00    +0.295 HD
+ENDBRANCH   5   7
+ENDBRANCH   1   5
+BRANCH   1   9
+ATOM      9  CB  CYS A  1        0.481   1.350  -0.400  0.00  0.00    +0.095 C 
+BRANCH   9  10
+ATOM     10  SG  CYS A  1        1.640   0.010   0.143  0.00  0.00    -0.176 S 
+ATOM     11  HG  CYS A  1        2.666   0.797   0.530  0.00  0.00    +0.102 HD
+ENDBRANCH   9  10
+ENDBRANCH   1   9
+TORSDOF 5
