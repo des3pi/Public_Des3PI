@@ -27,6 +27,8 @@ parser.add_argument("-yc", help="y center of the box",
                     type=float, default=0)
 parser.add_argument("-zc", help="z center of the box",
                     type=float, default=0)
+parser.add_argument("-analysis_only", help="Analyze without docking",
+                    type=str, default="False")
 
 
 args = parser.parse_args()
@@ -39,6 +41,7 @@ zsbox = args.zs
 xcbox = args.xc
 ycbox = args.yc
 zcbox = args.zc
+analysis_only_bool = args.analysis_only
 
 os.system("mkdir des3pi_calculations")
 os.chdir(start_path + "/des3pi_calculations")
@@ -52,7 +55,7 @@ for nb_dir in range(1,21):
         os.system("mkdir {}".format(str(name_dir)))
     os.system("cp ../{} {}".format(target,str(name_dir)))
     os.chdir(start_path + "/des3pi_calculations/{}".format(str(name_dir)))
-    os.system("python3 {}/des3pi_one_run.py -i {} -nb {} -xc {} -yc {} -zc {} -xs {} -ys {} -zs {}".format(des3pi_path,target,str(nb_dock),str(xcbox),str(ycbox),str(zcbox),str(xsbox),str(ysbox),str(zsbox)))
+    os.system("python3 {}/des3pi_one_run.py -i {} -nb {} -xc {} -yc {} -zc {} -xs {} -ys {} -zs {} -analysis_only {}".format(des3pi_path,target,str(nb_dock),str(xcbox),str(ycbox),str(zcbox),str(xsbox),str(ysbox),str(zsbox), str(analysis_only_bool)))
     os.chdir(start_path + "/des3pi_calculations")
 
 os.chdir(start_path + "/des3pi_calculations")
