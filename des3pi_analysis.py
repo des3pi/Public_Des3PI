@@ -107,6 +107,8 @@ for group in dico_groups.keys():
     dico_length = {}
     runs = dico_groups[group]
     for run in runs:
+        if dico_clusters[run[0]] == []:
+            continue
         cluster = dico_clusters[run[0]][run[1]-1]
         lengths.append(len(cluster))
 
@@ -114,6 +116,8 @@ for group in dico_groups.keys():
     for length in list_lengths_unique:
         list_length = []
         for run in runs:
+            if dico_clusters[run[0]] == []:
+                continue
             cluster = dico_clusters[run[0]][run[1]-1]
             if length == len(cluster):
                 list_length.append((run[0], cluster))
